@@ -1,4 +1,3 @@
-dir1
-dir2
-dir3
-dir4
+C:/Users/hp/Desktop/test/test1
+C:/Users/hp/Desktop/test/test2
+C:/Users/hp/Desktop/test/test3

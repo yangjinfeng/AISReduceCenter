@@ -6,8 +6,14 @@
  */
 #include <stdlib.h>
 #include <iostream>
+#include "Reducer.h"
 using namespace std;
 
+
 int main(){
+	cout<<"main"<<endl;
+	Reducer reducer;
+	reducer.reduceAndDistribute();
+	return 0;
 
 }
