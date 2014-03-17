@@ -6,6 +6,11 @@
  */
 
 #include "Reducer.h"
+#include "RunParameter.h"
+#include <vector>
+#include <string>
+#include <iostream>
+#include "Tools.h"
 
 Reducer::Reducer() {
 	// TODO Auto-generated constructor stub
@@ -18,8 +23,12 @@ Reducer::~Reducer() {
 
 
 void Reducer::initLoad(){
+	loadFeatureAndWeight(".", featureWeights);
+}
+
+void Reducer::loadFeatureAndWeight(string path, map<string,double>& fwMap){
 	map<string,int> fMap;
-	string featureFile = RunParameter::instance.getParameter("FEATURE_FILE").getStringValue();
+	string featureFile = path +"/feature.txt";
 	if(Tools::fileExists(featureFile.c_str())){//如果特征文件存在，则特征权重文件也存在
 		ifstream fin(featureFile.c_str());
 		string line;
@@ -35,7 +44,7 @@ void Reducer::initLoad(){
 	}
 
 	std::vector<double> fWeight;
-	string weightFile = RunParameter::instance.getParameter("WEIGHT_FILE").getStringValue();
+	string weightFile = path +"/weight.txt";
 	if(Tools::fileExists(weightFile.c_str())){
 		ifstream fin(weightFile.c_str());
 		string line;
@@ -51,6 +60,9 @@ void Reducer::initLoad(){
 		}
 	}
 	for(map<string,int>::iterator it = fMap.begin();it != fMap.end();it ++){
-		featureWeights[it->first] = fWeight[it->second];
+		fwMap[it->first] = fWeight[it->second];
 	}
 }
+
+
+
